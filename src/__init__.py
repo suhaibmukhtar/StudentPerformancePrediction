@@ -1,0 +1,1 @@
+#find_packages will find, in how many folders we have this __init__.py and will consider those folders as package itself
