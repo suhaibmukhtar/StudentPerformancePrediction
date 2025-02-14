@@ -9,9 +9,13 @@ if not os.path.exists(LOG_DIR):
 log_file_name=f"{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}.log"
 
 logging.basicConfig(
-    filename=os.path.join(LOG_DIR,log_file_name),
     level=logging.INFO,
-    format='%(asctime)s-%(filename)s-%(funcName)s-%(lineno)d-%(message)s'
+    format='%(asctime)s-%(filename)s-%(funcName)s-%(lineno)d-%(message)s',
+    handlers=[
+        logging.FileHandler(os.path.join(LOG_DIR, log_file_name)),
+        logging.StreamHandler()
+    ]
+
 )
 
 if __name__=="__main__":
