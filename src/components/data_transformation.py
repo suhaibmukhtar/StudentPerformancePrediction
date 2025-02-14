@@ -28,7 +28,7 @@ class DataTransformation:
         """
         This function will return preprocessore object: only code related to pipeline
         """
-        logging.info("started getting data-transformation object")
+        logging.info("---------started getting data-transformation object--------")
         try:
             numerical_pipeline = Pipeline(
                 steps=[
@@ -70,7 +70,6 @@ class DataTransformation:
             target_column="Exam_Score"
             numerical_cols.remove('Exam_Score')
             logging.info("Obtaining the preporcessor object")
-
             preprocessor_obj = self.get_transformation_object(numerical_cols, categorical_cols)
             logging.info("Obtained Successfully Pre-processor object")
             X_train = train_data.drop(columns=['Exam_Score'])
