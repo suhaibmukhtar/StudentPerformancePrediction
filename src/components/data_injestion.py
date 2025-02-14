@@ -26,7 +26,7 @@ class DataInjestion:
         """
         logging.info("Started Data-Injestion-initiation")
         try:
-            data = pd.read_csv(r"notebook\data\StudentPerformanceFactors.csv")
+            data = pd.read_csv(r"D:\ML\MLOPS\notebook\data\StudentPerformanceFactors.csv")
             logging.info("Dataset Loaded Successfully")
             #dirname is used to read the directory-name
             os.makedirs(os.path.dirname(self.injestion_config.train_dataset_path),exist_ok=True)
@@ -50,10 +50,10 @@ class DataInjestion:
         
 if __name__=="__main__":
     obj1 = DataInjestion()
-    obj1.initiate_data_injestion()
-            
+    train_path, test_path= obj1.initiate_data_injestion()
 
 
-    
 
-    
+
+
+
