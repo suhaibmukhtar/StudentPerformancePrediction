@@ -2,6 +2,7 @@
 #Here we will import all the components need for training a model
 from src.components.data_injestion import DataInjestion
 from src.components.data_transformation import DataTransformation
+from src.components.model_trainer import ModelTrainer
 from src.logger import logging
 from src.exception import CustomException
 
@@ -13,4 +14,7 @@ if __name__=="__main__":
     data_transformation = DataTransformation()
     X_train,y_train,X_test,y_test, preprocessor_path = data_transformation.initiate_data_transformation(train_path, test_path)
     logging.info("------------Date-Transformation Executed Successfully-----------------------")
-    
+    model_trainer = ModelTrainer()
+    r2score, rmse = model_trainer.initiate_model_training(X_train,y_train,X_test,y_test)
+    logging.info("------------Model Training and evaluation Done Successfully------------------")
+    logging.info(f"Best R2-score:{r2score} and RMSE:{rmse}")

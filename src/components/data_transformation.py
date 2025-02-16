@@ -1,5 +1,4 @@
 ## code responsible for encoding/transforming the data
-import numpy as np
 import pandas as pd
 import os
 from dataclasses import dataclass
@@ -11,7 +10,6 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler,OneHotEncoder
-import pickle
 from src.pipeline.utils import save_object
 
 
@@ -68,7 +66,7 @@ class DataTransformation:
             numerical_cols = list(train_data.select_dtypes(exclude="O").columns)
             categorical_cols = list(train_data.select_dtypes(include="O").columns)
             target_column="Exam_Score"
-            numerical_cols.remove('Exam_Score')
+            numerical_cols.remove(target_column)
             logging.info("Obtaining the preporcessor object")
             preprocessor_obj = self.get_transformation_object(numerical_cols, categorical_cols)
             logging.info("Obtained Successfully Pre-processor object")
@@ -79,7 +77,7 @@ class DataTransformation:
             ## Applying transformation
             X_train_trans = preprocessor_obj.fit_transform(X_train)
             X_test_trans = preprocessor_obj.transform(X_test)
-            save_object(self.transformation_config.preprocessor_path,preprocessor_obj)
+            save_object(self.transformation_config.preprocessor_path,preprocessor_obj,step='Pre-processor')
             return(
                 X_train_trans,
                 y_train,
