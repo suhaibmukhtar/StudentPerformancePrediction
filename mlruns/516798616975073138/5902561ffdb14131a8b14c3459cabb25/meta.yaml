@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/516798616975073138/5902561ffdb14131a8b14c3459cabb25/artifacts
+end_time: 1739782263428
+entry_point_name: ''
+experiment_id: '516798616975073138'
+lifecycle_stage: active
+run_id: 5902561ffdb14131a8b14c3459cabb25
+run_name: XgBoost
+run_uuid: 5902561ffdb14131a8b14c3459cabb25
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739782258586
+status: 3
+tags: []
+user_id: Adnaannazir10

@@ -13,10 +13,7 @@ dagshub.init(repo_owner='suhaibmukhtar', repo_name='StudentPerformancePrediction
 mlflow.set_tracking_uri("http://127.0.0.1:5000")
 # mlflow.set_tracking_uri("https://dagshub.com/suhaibmukhtar/StudentPerformancePrediction.mlflow")
 #Name of experiment
-mlflow.set_experiment("ExperimentTrackingStudentPerformance")
-
-# Authenticate directly if needed
-mlflow.tracking.MlflowClient().get_experiment_by_name("ExperimentTrackingStudentPerformance")
+mlflow.set_experiment("ExperimentTracking")
 
 def save_object(file_path, obj, step):
     try:
@@ -32,7 +29,7 @@ def evaluate_models(x_train, y_train, x_test, y_test, models):
         report = {}
         
         for model_name, model in models.items():
-            with mlflow.start_run():
+            with mlflow.start_run(run_name=model_name):
                 # Log model name as a parameter
                 mlflow.log_param("Model", model_name)
 
@@ -63,7 +60,7 @@ def evaluate_models(x_train, y_train, x_test, y_test, models):
 
                 # Save the model score in the report
                 report[model_name] = test_model_score
-                
+                mlflow.log_artifact(__file__)
                 logging.info(f"{model_name} - R2 Score: {test_model_score}")
                 mlflow.set_tags({'Author':'Suhaib Mukhtar',"Project":'SudentPerformance'})
 

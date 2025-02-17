@@ -110,8 +110,8 @@ This command triggers the pipeline to perform data ingestion, data transformatio
 
 The model with the best performance is `CatBoostRegressor` with:
 
-- **R² Score:** 0.662
-- **Root Mean Squared Error (RMSE):** 1.93
+- **R² Score:** 0.736
+- **Root Mean Squared Error (RMSE):** 2.22
 
 ## Next Steps
 

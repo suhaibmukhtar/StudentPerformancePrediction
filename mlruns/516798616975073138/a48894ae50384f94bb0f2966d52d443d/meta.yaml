@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/516798616975073138/a48894ae50384f94bb0f2966d52d443d/artifacts
+end_time: 1739782246462
+entry_point_name: ''
+experiment_id: '516798616975073138'
+lifecycle_stage: active
+run_id: a48894ae50384f94bb0f2966d52d443d
+run_name: GBoost
+run_uuid: a48894ae50384f94bb0f2966d52d443d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739782240220
+status: 3
+tags: []
+user_id: Adnaannazir10

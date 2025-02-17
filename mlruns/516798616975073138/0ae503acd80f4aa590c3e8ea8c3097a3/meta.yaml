@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/516798616975073138/0ae503acd80f4aa590c3e8ea8c3097a3/artifacts
+end_time: 1739782251339
+entry_point_name: ''
+experiment_id: '516798616975073138'
+lifecycle_stage: active
+run_id: 0ae503acd80f4aa590c3e8ea8c3097a3
+run_name: AdBoost
+run_uuid: 0ae503acd80f4aa590c3e8ea8c3097a3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739782246494
+status: 3
+tags: []
+user_id: Adnaannazir10
