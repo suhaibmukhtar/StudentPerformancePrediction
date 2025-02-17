@@ -10,8 +10,8 @@ import dagshub
 dagshub.init(repo_owner='suhaibmukhtar', repo_name='StudentPerformancePrediction', mlflow=True)
 
 # Set MLflow tracking server URI
-# mlflow.set_tracking_uri("http://127.0.0.1:5000")
-mlflow.set_tracking_uri("https://dagshub.com/suhaibmukhtar/StudentPerformancePrediction.mlflow")
+mlflow.set_tracking_uri("http://127.0.0.1:5000")
+# mlflow.set_tracking_uri("https://dagshub.com/suhaibmukhtar/StudentPerformancePrediction.mlflow")
 #Name of experiment
 mlflow.set_experiment("ExperimentTrackingStudentPerformance")
 
