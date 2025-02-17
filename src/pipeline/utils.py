@@ -8,6 +8,7 @@ from src.logger import logging
 from src.exception import CustomException
 import sys
 from sklearn.metrics import r2_score, root_mean_squared_error, mean_absolute_error
+from sklearn.model_selection import GridSearchCV
 import dagshub
 dagshub.init(repo_owner='suhaibmukhtar', repo_name='StudentPerformancePrediction', mlflow=True)
 
@@ -26,17 +27,20 @@ def save_object(file_path, obj, step):
         raise CustomException(e, sys)
 
 # Function to evaluate multiple models and log results in MLflow
-def evaluate_models(x_train, y_train, x_test, y_test, models):
+def evaluate_models(x_train, y_train, x_test, y_test, models,param):
     try:
         report = {}       
+        i=0
         for model_name, model in models.items():
+            para=param[list(models.keys())[i]]
+            gs = GridSearchCV(model,para,cv=5)
             with mlflow.start_run(run_name=model_name):
                 # Log model name as a parameter
                 mlflow.log_param("Model", model_name)
 
                 # Log model-specific parameters 
-                if hasattr(model, 'get_params'):
-                    mlflow.log_params(model.get_params())
+                # if hasattr(model, 'get_params'):
+                #     mlflow.log_params(model.get_params())
                 
                 train=pd.DataFrame(x_train).copy()
                 test=pd.DataFrame(x_test).copy()
@@ -48,7 +52,11 @@ def evaluate_models(x_train, y_train, x_test, y_test, models):
                 mlflow.log_input(test_df)
 
                 # Train the model
-                model.fit(x_train, y_train)
+                # model.fit(x_train, y_train)
+                gs.fit(x_train,y_train)
+                model.set_params(**gs.best_params_)
+                mlflow.log_params(**gs.best_params_)
+                model.fit(x_train,y_train)
                 
                 # Make predictions
                 y_test_pred = model.predict(x_test)
