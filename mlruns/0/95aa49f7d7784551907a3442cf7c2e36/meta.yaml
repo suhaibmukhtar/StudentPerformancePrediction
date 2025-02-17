@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/95aa49f7d7784551907a3442cf7c2e36/artifacts
+deleted_time: 1739687901599
+end_time: 1739686916999
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 95aa49f7d7784551907a3442cf7c2e36
+run_name: painted-stork-740
+run_uuid: 95aa49f7d7784551907a3442cf7c2e36
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739686912302
+status: 4
+tags: []
+user_id: adnaa

@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML/MLOPS/mlruns/372427460815533056/733270f21547438a81eae7a13604093d/artifacts
+end_time: 1739715449827
+entry_point_name: ''
+experiment_id: '372427460815533056'
+lifecycle_stage: active
+run_id: 733270f21547438a81eae7a13604093d
+run_name: big-rook-601
+run_uuid: 733270f21547438a81eae7a13604093d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739715442822
+status: 3
+tags: []
+user_id: Adnaannazir10

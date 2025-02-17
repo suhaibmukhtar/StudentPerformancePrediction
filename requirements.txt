@@ -7,4 +7,6 @@ ipykernel
 pickledb
 catboost
 xgboost
+mlflow
+dagshub
 -e .

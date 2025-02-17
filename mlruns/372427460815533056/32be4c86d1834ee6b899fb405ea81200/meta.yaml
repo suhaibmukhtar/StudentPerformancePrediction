@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML/MLOPS/mlruns/372427460815533056/32be4c86d1834ee6b899fb405ea81200/artifacts
+end_time: 1739689934138
+entry_point_name: ''
+experiment_id: '372427460815533056'
+lifecycle_stage: active
+run_id: 32be4c86d1834ee6b899fb405ea81200
+run_name: XgBoost
+run_uuid: 32be4c86d1834ee6b899fb405ea81200
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739689929638
+status: 3
+tags: []
+user_id: adnaa

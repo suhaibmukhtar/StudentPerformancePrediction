@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML/MLOPS/mlruns/372427460815533056/0c24de131a1d4f09a1253ad6d6addf0a/artifacts
+end_time: 1739689929591
+entry_point_name: ''
+experiment_id: '372427460815533056'
+lifecycle_stage: active
+run_id: 0c24de131a1d4f09a1253ad6d6addf0a
+run_name: CatBoost
+run_uuid: 0c24de131a1d4f09a1253ad6d6addf0a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739689922128
+status: 3
+tags: []
+user_id: adnaa

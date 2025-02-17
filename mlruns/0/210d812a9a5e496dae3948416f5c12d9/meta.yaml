@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/210d812a9a5e496dae3948416f5c12d9/artifacts
+deleted_time: 1739687901587
+end_time: 1739686790669
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 210d812a9a5e496dae3948416f5c12d9
+run_name: spiffy-ox-168
+run_uuid: 210d812a9a5e496dae3948416f5c12d9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739686787320
+status: 4
+tags: []
+user_id: adnaa

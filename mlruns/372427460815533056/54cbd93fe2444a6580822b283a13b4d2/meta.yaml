@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/ML/MLOPS/mlruns/372427460815533056/54cbd93fe2444a6580822b283a13b4d2/artifacts
+end_time: 1739715466285
+entry_point_name: ''
+experiment_id: '372427460815533056'
+lifecycle_stage: active
+run_id: 54cbd93fe2444a6580822b283a13b4d2
+run_name: clumsy-fowl-391
+run_uuid: 54cbd93fe2444a6580822b283a13b4d2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739715457739
+status: 3
+tags: []
+user_id: Adnaannazir10

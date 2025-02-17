@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/aee0ef39ed0c4916bada89547b8b5494/artifacts
+deleted_time: 1739687901599
+end_time: 1739686911643
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: aee0ef39ed0c4916bada89547b8b5494
+run_name: unique-donkey-350
+run_uuid: aee0ef39ed0c4916bada89547b8b5494
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739686910619
+status: 3
+tags: []
+user_id: adnaa

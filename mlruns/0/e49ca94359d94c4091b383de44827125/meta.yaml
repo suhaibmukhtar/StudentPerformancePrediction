@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/e49ca94359d94c4091b383de44827125/artifacts
+deleted_time: 1739688194172
+end_time: 1739687742775
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: e49ca94359d94c4091b383de44827125
+run_name: Random-Forest
+run_uuid: e49ca94359d94c4091b383de44827125
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739687729190
+status: 3
+tags: []
+user_id: adnaa

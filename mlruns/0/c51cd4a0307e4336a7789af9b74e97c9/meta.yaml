@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/c51cd4a0307e4336a7789af9b74e97c9/artifacts
+deleted_time: 1739688194168
+end_time: 1739687761013
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: c51cd4a0307e4336a7789af9b74e97c9
+run_name: AdBoost
+run_uuid: c51cd4a0307e4336a7789af9b74e97c9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739687752100
+status: 3
+tags: []
+user_id: adnaa

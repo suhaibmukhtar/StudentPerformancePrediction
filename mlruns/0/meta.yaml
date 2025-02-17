@@ -1,0 +1,7 @@
+artifact_location: mlflow-artifacts:/0
+creation_time: 1739686135130
+experiment_id: '0'
+last_update_time: 1739687921136
+lifecycle_stage: active
+name: ExperimentTrackingStudentPerformance
+tags: {}

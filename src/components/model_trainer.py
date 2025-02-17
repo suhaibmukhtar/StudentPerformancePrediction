@@ -50,10 +50,7 @@ class ModelTrainer:
                 logging.info("Best Model Obtained Successfully!")
                 save_object(file_path=self.trained_config.trained_model_file_path, obj=best_model, step='Trained_Model')
             
-            prediction = best_model.predict(X_test)
-            r2score = r2_score(prediction,y_test)
-            rmse = root_mean_squared_error(prediction,y_test)
-            return r2score, rmse
+            return best_model_score
         except Exception as e:
             raise CustomException(e,sys)
         

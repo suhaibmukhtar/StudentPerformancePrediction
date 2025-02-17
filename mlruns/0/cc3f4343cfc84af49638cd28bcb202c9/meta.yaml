@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/cc3f4343cfc84af49638cd28bcb202c9/artifacts
+deleted_time: 1739687901642
+end_time: 1739687630076
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: cc3f4343cfc84af49638cd28bcb202c9
+run_name: CatBoost
+run_uuid: cc3f4343cfc84af49638cd28bcb202c9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739687619585
+status: 3
+tags: []
+user_id: adnaa

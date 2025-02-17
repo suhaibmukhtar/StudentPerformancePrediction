@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/a552115d6df749d8aa027557ccc43d0b/artifacts
+deleted_time: 1739687901591
+end_time: 1739686910571
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: a552115d6df749d8aa027557ccc43d0b
+run_name: efficient-robin-709
+run_uuid: a552115d6df749d8aa027557ccc43d0b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739686907234
+status: 3
+tags: []
+user_id: adnaa

@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/d6f2830f617546c9b6982d3314f86dc8/artifacts
+deleted_time: 1739687901634
+end_time: 1739687636167
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: d6f2830f617546c9b6982d3314f86dc8
+run_name: XgBoost
+run_uuid: d6f2830f617546c9b6982d3314f86dc8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739687630128
+status: 3
+tags: []
+user_id: adnaa

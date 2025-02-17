@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/0/bbab8ee99fb8411d9c830b7914049afa/artifacts
+deleted_time: 1739688194161
+end_time: 1739687784002
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: bbab8ee99fb8411d9c830b7914049afa
+run_name: DecisionTree
+run_uuid: bbab8ee99fb8411d9c830b7914049afa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739687777577
+status: 3
+tags: []
+user_id: adnaa
