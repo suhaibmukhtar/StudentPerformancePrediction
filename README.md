@@ -105,6 +105,7 @@ This command triggers the pipeline to perform data ingestion, data transformatio
 
 - `MLflow` is integrated to track experiments, model parameters, metrics, and artifacts.
 - Allows for better monitoring, comparison, and reproducibility of experiments.
+![MLflow UI](ExperimentTrackingResults/exp1.png)
 
 ## Model Performance
 
@@ -112,6 +113,17 @@ The model with the best performance is `CatBoostRegressor` with:
 
 - **R² Score:** 0.736
 - **Root Mean Squared Error (RMSE):** 2.22
+
+- **Logging Datasets and Params of the model**
+![MLflow UI](ExperimentTrackingResults/exp2.png)
+
+- **Logging the Source-code and Model**
+![MLflow UI](ExperimentTrackingResults/exp_artifact.png)
+
+- **Logging Metrics**
+![MLflow UI](ExperimentTrackingResults/exp3.png)
+
+
 
 ## Next Steps
 
