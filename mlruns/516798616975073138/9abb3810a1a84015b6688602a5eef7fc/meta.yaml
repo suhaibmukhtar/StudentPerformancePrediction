@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/516798616975073138/9abb3810a1a84015b6688602a5eef7fc/artifacts
+deleted_time: 1739787987617
+end_time: 1739786699833
+entry_point_name: ''
+experiment_id: '516798616975073138'
+lifecycle_stage: deleted
+run_id: 9abb3810a1a84015b6688602a5eef7fc
+run_name: GBoost
+run_uuid: 9abb3810a1a84015b6688602a5eef7fc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739786689688
+status: 3
+tags: []
+user_id: Adnaannazir10

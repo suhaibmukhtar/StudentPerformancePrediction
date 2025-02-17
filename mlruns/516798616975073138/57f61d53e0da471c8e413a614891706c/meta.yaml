@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/516798616975073138/57f61d53e0da471c8e413a614891706c/artifacts
+deleted_time: 1739787987577
+end_time: 1739786979454
+entry_point_name: ''
+experiment_id: '516798616975073138'
+lifecycle_stage: deleted
+run_id: 57f61d53e0da471c8e413a614891706c
+run_name: CatBoost
+run_uuid: 57f61d53e0da471c8e413a614891706c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739786968103
+status: 3
+tags: []
+user_id: Adnaannazir10

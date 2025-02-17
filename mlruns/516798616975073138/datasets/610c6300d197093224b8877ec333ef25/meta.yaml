@@ -1,0 +1,24 @@
+digest: 240d4f44
+name: dataset
+profile: '{"num_rows": 1322, "num_elements": 37016}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": 0, "required": true}, {"type":
+  "double", "name": 1, "required": true}, {"type": "double", "name": 2, "required":
+  true}, {"type": "double", "name": 3, "required": true}, {"type": "double", "name":
+  4, "required": true}, {"type": "double", "name": 5, "required": true}, {"type":
+  "double", "name": 6, "required": true}, {"type": "double", "name": 7, "required":
+  true}, {"type": "double", "name": 8, "required": true}, {"type": "double", "name":
+  9, "required": true}, {"type": "double", "name": 10, "required": true}, {"type":
+  "double", "name": 11, "required": true}, {"type": "double", "name": 12, "required":
+  true}, {"type": "double", "name": 13, "required": true}, {"type": "double", "name":
+  14, "required": true}, {"type": "double", "name": 15, "required": true}, {"type":
+  "double", "name": 16, "required": true}, {"type": "double", "name": 17, "required":
+  true}, {"type": "double", "name": 18, "required": true}, {"type": "double", "name":
+  19, "required": true}, {"type": "double", "name": 20, "required": true}, {"type":
+  "double", "name": 21, "required": true}, {"type": "double", "name": 22, "required":
+  true}, {"type": "double", "name": 23, "required": true}, {"type": "double", "name":
+  24, "required": true}, {"type": "double", "name": 25, "required": true}, {"type":
+  "double", "name": 26, "required": true}, {"type": "long", "name": "target", "required":
+  true}]}'
+source: '{"tags": {"mlflow.user": "Adnaannazir10", "mlflow.source.name": "src/pipeline/train_pipeline.py",
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "a889d9aca1c2adfeab27ff0a09f390944019d906"}}'
+source_type: code

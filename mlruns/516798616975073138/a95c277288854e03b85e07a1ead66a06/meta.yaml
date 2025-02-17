@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/516798616975073138/a95c277288854e03b85e07a1ead66a06/artifacts
+deleted_time: 1739787987527
+end_time: 1739786740023
+entry_point_name: ''
+experiment_id: '516798616975073138'
+lifecycle_stage: deleted
+run_id: a95c277288854e03b85e07a1ead66a06
+run_name: DecisionTree
+run_uuid: a95c277288854e03b85e07a1ead66a06
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739786732112
+status: 3
+tags: []
+user_id: Adnaannazir10

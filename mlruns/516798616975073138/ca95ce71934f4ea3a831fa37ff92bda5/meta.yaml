@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/516798616975073138/ca95ce71934f4ea3a831fa37ff92bda5/artifacts
+end_time: 1739787784644
+entry_point_name: ''
+experiment_id: '516798616975073138'
+lifecycle_stage: active
+run_id: ca95ce71934f4ea3a831fa37ff92bda5
+run_name: Random-Forest
+run_uuid: ca95ce71934f4ea3a831fa37ff92bda5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739787770922
+status: 3
+tags: []
+user_id: Adnaannazir10

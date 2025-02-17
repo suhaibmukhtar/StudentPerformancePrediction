@@ -1,5 +1,7 @@
 import pickle
 import mlflow
+import mlflow.data
+import pandas as pd
 import mlflow.sklearn
 import mlflow.catboost
 from src.logger import logging
@@ -26,8 +28,7 @@ def save_object(file_path, obj, step):
 # Function to evaluate multiple models and log results in MLflow
 def evaluate_models(x_train, y_train, x_test, y_test, models):
     try:
-        report = {}
-        
+        report = {}       
         for model_name, model in models.items():
             with mlflow.start_run(run_name=model_name):
                 # Log model name as a parameter
@@ -36,6 +37,15 @@ def evaluate_models(x_train, y_train, x_test, y_test, models):
                 # Log model-specific parameters 
                 if hasattr(model, 'get_params'):
                     mlflow.log_params(model.get_params())
+                
+                train=pd.DataFrame(x_train).copy()
+                test=pd.DataFrame(x_test).copy()
+                train['target'] = y_train
+                test['target'] = y_test
+                train_df = mlflow.data.from_pandas(train)
+                test_df = mlflow.data.from_pandas(test)
+                mlflow.log_input(train_df)
+                mlflow.log_input(test_df)
 
                 # Train the model
                 model.fit(x_train, y_train)

@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/516798616975073138/4c66175e4f9d4e409c67fa9faf8dcfef/artifacts
+deleted_time: 1739787987477
+end_time: 1739787020656
+entry_point_name: ''
+experiment_id: '516798616975073138'
+lifecycle_stage: deleted
+run_id: 4c66175e4f9d4e409c67fa9faf8dcfef
+run_name: KNN
+run_uuid: 4c66175e4f9d4e409c67fa9faf8dcfef
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739787003882
+status: 3
+tags: []
+user_id: Adnaannazir10
