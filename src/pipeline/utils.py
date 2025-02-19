@@ -10,77 +10,92 @@ import sys
 from sklearn.metrics import r2_score, root_mean_squared_error, mean_absolute_error
 from sklearn.model_selection import GridSearchCV
 import dagshub
-dagshub.init(repo_owner='suhaibmukhtar', repo_name='StudentPerformancePrediction', mlflow=True)
-
-# Set MLflow tracking server URI
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
-# mlflow.set_tracking_uri("https://dagshub.com/suhaibmukhtar/StudentPerformancePrediction.mlflow")
-#Name of experiment
-mlflow.set_experiment("ExperimentTracking")
 
 def save_object(file_path, obj, step):
     try:
         with open(file_path, 'wb') as f:
             pickle.dump(obj, f)
-        logging.info("Object saved successfully")
+        logging.info(f"{step} object saved successfully at {file_path}")
     except Exception as e:
         raise CustomException(e, sys)
 
-# Function to evaluate multiple models and log results in MLflow
-def evaluate_models(x_train, y_train, x_test, y_test, models,param):
+def evaluate_models(x_train, y_train, x_test, y_test, models, param):
     try:
-        report = {}       
-        i=0
+        # Initialize MLflow
+        dagshub.init(repo_owner='suhaibmukhtar', repo_name='StudentPerformancePrediction', mlflow=True)
+        mlflow.set_tracking_uri("http://127.0.0.1:5000")
+        mlflow.set_experiment("ExperimentTrackingHyperTune")
+        
+        report = {}
+        
         for model_name, model in models.items():
-            para=param[list(models.keys())[i]]
-            gs = GridSearchCV(model,para,cv=5)
+            logging.info(f"Starting evaluation for {model_name}")
+            
+            # Get corresponding parameters
+            parameters = param[model_name]
+            gs = GridSearchCV(model, parameters, cv=5)
+            
             with mlflow.start_run(run_name=model_name):
-                # Log model name as a parameter
-                mlflow.log_param("Model", model_name)
+                try:
+                    # Log model name and dataset
+                    mlflow.log_param("Model", model_name)
+                    
+                    # Log input data
+                    train = pd.DataFrame(x_train).copy()
+                    test = pd.DataFrame(x_test).copy()
+                    train['target'] = y_train
+                    test['target'] = y_test
+                    train_df = mlflow.data.from_pandas(train)
+                    test_df = mlflow.data.from_pandas(test)
+                    mlflow.log_input(train_df, context="training")
+                    mlflow.log_input(test_df, context="testing")
 
-                # Log model-specific parameters 
-                # if hasattr(model, 'get_params'):
-                #     mlflow.log_params(model.get_params())
+                    # Perform GridSearch
+                    logging.info(f"Starting GridSearchCV for {model_name}")
+                    gs.fit(x_train, y_train)
+                    
+                    # Log best parameters
+                    mlflow.log_params(gs.best_params_)
+                    
+                    # Get best model and fit
+                    best_model = gs.best_estimator_
+                    
+                    # Make predictions
+                    y_test_pred = best_model.predict(x_test)
+                    
+                    # Calculate metrics
+                    test_model_score = r2_score(y_test, y_test_pred)
+                    test_rmse = root_mean_squared_error(y_test, y_test_pred)
+                    test_mae = mean_absolute_error(y_test, y_test_pred)
+                    
+                    # Log metrics
+                    mlflow.log_metrics({
+                        "R2_score": test_model_score,
+                        "RMSE": test_rmse,
+                        "MAE": test_mae
+                    })
+
+                    # Log model
+                    if "CatBoost" in model_name:
+                        mlflow.catboost.log_model(best_model, artifact_path=model_name)
+                    else:
+                        mlflow.sklearn.log_model(best_model, artifact_path=model_name)
+
+                    # Save score in report
+                    report[model_name] = test_model_score
+                    
+                    # Log source file and tags
+                    mlflow.log_artifact(__file__)
+                    mlflow.set_tags({
+                        'Author': 'Suhaib Mukhtar',
+                        "Project": 'StudentPerformance'
+                    })
+                    
+                    logging.info(f"{model_name} evaluation completed - R2 Score: {test_model_score}")
                 
-                train=pd.DataFrame(x_train).copy()
-                test=pd.DataFrame(x_test).copy()
-                train['target'] = y_train
-                test['target'] = y_test
-                train_df = mlflow.data.from_pandas(train)
-                test_df = mlflow.data.from_pandas(test)
-                mlflow.log_input(train_df)
-                mlflow.log_input(test_df)
-
-                # Train the model
-                # model.fit(x_train, y_train)
-                gs.fit(x_train,y_train)
-                model.set_params(**gs.best_params_)
-                mlflow.log_params(**gs.best_params_)
-                model.fit(x_train,y_train)
-                
-                # Make predictions
-                y_test_pred = model.predict(x_test)
-                
-                # Calculate R2 score
-                test_model_score = r2_score(y_test, y_test_pred)
-                test_rmse = root_mean_squared_error(y_test,y_test_pred)
-                test_mae = mean_absolute_error(y_test, y_test_pred)
-                # Log the R2 score
-                mlflow.log_metric("R2_score", test_model_score)
-                mlflow.log_metric("RMSE", test_rmse)
-                mlflow.log_metric("MAE",test_mae)
-
-                # Log the model depending on its type
-                if "CatBoost" in model_name:
-                    mlflow.catboost.log_model(model, artifact_path=model_name)
-                else:
-                    mlflow.sklearn.log_model(model, artifact_path=model_name)
-
-                # Save the model score in the report
-                report[model_name] = test_model_score
-                mlflow.log_artifact(__file__)
-                logging.info(f"{model_name} - R2 Score: {test_model_score}")
-                mlflow.set_tags({'Author':'Suhaib Mukhtar',"Project":'SudentPerformance'})
+                except Exception as e:
+                    logging.error(f"Error during {model_name} evaluation: {str(e)}")
+                    continue
 
         return report
 
