@@ -111,8 +111,12 @@ This command triggers the pipeline to perform data ingestion, data transformatio
 
 The model with the best performance is `CatBoostRegressor` with:
 
-- **R² Score:** 0.736
-- **Root Mean Squared Error (RMSE):** 2.22
+- **MAE:** 0.6032185920818891
+- **R2_score:** 0.7566445483011821
+- **RMSE:** 1.8546824381753373
+
+- **Hyper-tuned Model Results**
+![MLflow UI](ExperimentTrackingResults/exp2.png)
 
 - **Logging Datasets and Params of the model**
 ![MLflow UI](ExperimentTrackingResults/exp2.png)
