@@ -63,6 +63,58 @@ $ python src/pipeline/train_pipeline.py
 
 This command triggers the pipeline to perform data ingestion, data transformation, model training, and evaluation.
 
+## Running the Prediction Pipeline
+
+To start the prediction service:
+
+```bash
+$ uvicorn src/pipeline/predict_pipeline:app --host 127.0.0.1 --port 8000 --reload
+```
+
+This command will start the FastAPI server for making predictions.
+
+To make a prediction, send a POST request to `http://127.0.0.1:8000/predict` with the input data in JSON format:
+
+```json
+{
+    "Hours_Studied": 5,
+    "Attendance": 90,
+    "Parental_Involvement": "High",
+    "Access_to_Resources": "Good",
+    "Extracurricular_Activities": "Yes",
+    "Sleep_Hours": 8,
+    "Previous_Scores": 85,
+    "Motivation_Level": "High",
+    "Internet_Access": "Yes",
+    "Tutoring_Sessions": 2,
+    "Family_Income": "High",
+    "Teacher_Quality": "Good",
+    "School_Type": "Public",
+    "Peer_Influence": "Positive",
+    "Physical_Activity": 3,
+    "Learning_Disabilities": "No",
+    "Parental_Education_Level": "Graduate",
+    "Distance_from_Home": "Near",
+    "Gender": "Male"
+}
+```
+
+## Building and Running the Docker Container
+
+To build the Docker image:
+
+```bash
+$ docker build -t mlops-student-performance .
+```
+
+To run the Docker container:
+
+```bash
+$ docker run -p 8000:8000 mlops-student-performance
+```
+
+This will start the FastAPI server inside the Docker container, and you can make predictions as described above.
+
 ## Key Components
 
 ### 1. **Data Ingestion (**``**):**

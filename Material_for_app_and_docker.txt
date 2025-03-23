@@ -1,0 +1,229 @@
+Now that you have your MLOps project structure, let's proceed with deploying the best model using FastAPI and creating a Dockerfile for containerization.
+
+🚀 Steps for Deployment
+Ensure your trained model & preprocessor are saved in artifacts/
+Build a FastAPI service to load the model and handle predictions.
+Write a Dockerfile to containerize the FastAPI service.
+Run the FastAPI app locally for testing.
+Build and run the Docker container.
+1️⃣ Save Your Model & Preprocessor
+Ensure your best model and preprocessor are saved in the artifacts/ directory inside the training pipeline (train_pipeline.py).
+
+Modify src/pipeline/train_pipeline.py
+Add this after training your best model:
+
+import pickle
+import os
+
+def save_model_and_preprocessor(model, preprocessor):
+    """Saves the trained model and preprocessing pipeline."""
+    os.makedirs("artifacts", exist_ok=True)
+
+    # Save model
+    with open("artifacts/best_model.pkl", "wb") as f:
+        pickle.dump(model, f)
+
+    # Save preprocessor
+    with open("artifacts/preprocessor.pkl", "wb") as f:
+        pickle.dump(preprocessor, f)
+
+    print("✅ Model and Preprocessor saved in artifacts/")
+2️⃣ Create a FastAPI App (src/app.py)
+This FastAPI app loads the model & preprocessor and serves predictions.
+
+Create src/app.py
+
+from fastapi import FastAPI
+from pydantic import BaseModel
+import numpy as np
+import pickle
+import pandas as pd
+import os
+
+# Initialize FastAPI App
+app = FastAPI()
+
+# Load Model & Preprocessor
+MODEL_PATH = "artifacts/best_model.pkl"
+PREPROCESSOR_PATH = "artifacts/preprocessor.pkl"
+
+if os.path.exists(MODEL_PATH) and os.path.exists(PREPROCESSOR_PATH):
+    with open(MODEL_PATH, "rb") as model_file:
+        model = pickle.load(model_file)
+    with open(PREPROCESSOR_PATH, "rb") as preprocessor_file:
+        preprocessor = pickle.load(preprocessor_file)
+    print("✅ Model & Preprocessor Loaded Successfully!")
+else:
+    raise FileNotFoundError("Model or Preprocessor file not found. Train the model first.")
+
+# Define Input Schema
+class InputFeatures(BaseModel):
+    Hours_Studied: int
+    Attendance: int
+    Parental_Involvement: str
+    Access_to_Resources: str
+    Extracurricular_Activities: str
+    Sleep_Hours: int
+    Previous_Scores: int
+    Motivation_Level: str
+    Internet_Access: str
+    Tutoring_Sessions: int
+    Family_Income: str
+    Teacher_Quality: str
+    School_Type: str
+    Peer_Influence: str
+    Physical_Activity: int
+    Learning_Disabilities: str
+    Parental_Education_Level: str
+    Distance_from_Home: str
+    Gender: str
+
+@app.get("/")
+def home():
+    return {"message": "MLOps FastAPI Model Deployed Successfully!"}
+
+@app.post("/predict")
+def predict(data: InputFeatures):
+    try:
+        # Convert input data to DataFrame
+        input_data = pd.DataFrame([data.dict()])
+
+        # Transform input using the preprocessor
+        transformed_input = preprocessor.transform(input_data)
+
+        # Make prediction
+        prediction = model.predict(transformed_input)[0]
+
+        return {"predicted_score": float(prediction)}
+
+    except Exception as e:
+        return {"error": str(e)}
+3️⃣ Create a requirements.txt for FastAPI
+Add the following dependencies in requirements.txt:
+
+
+fastapi
+uvicorn
+scikit-learn
+numpy
+pandas
+pickle5
+4️⃣ Create a Dockerfile
+This Dockerfile containerizes your FastAPI application.
+
+Create Dockerfile in the root folder
+dockerfile
+# Use Python base image
+FROM python:3.9-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy required files
+COPY requirements.txt .
+COPY src /app/src
+COPY artifacts /app/artifacts
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose port
+EXPOSE 8000
+
+# Run FastAPI app
+CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "8000"]
+5️⃣ Build & Run the FastAPI App Locally
+Run FastAPI Without Docker
+cd MLOPS
+uvicorn src.app:app --host 0.0.0.0 --port 8000 --reload
+Visit http://127.0.0.1:8000/docs to test the API.
+6️⃣ Build & Run Docker Container
+Build the Docker Image
+docker build -t mlops-fastapi .
+Run the Docker Container
+docker run -p 8000:8000 mlops-fastapi
+The FastAPI app will be running at http://localhost:8000.
+Test the API using Postman or cURL.
+7️⃣ Push the Docker Image to Docker Hub
+Login to Docker Hub
+docker login
+
+Tag the Image
+docker tag mlops-fastapi YOUR_DOCKERHUB_USERNAME/mlops-fastapi
+Push the Image
+
+docker push YOUR_DOCKERHUB_USERNAME/mlops-fastapi
+8️⃣ Deploy FastAPI on Cloud (Optional)
+To deploy your container to AWS, Azure, or GCP, you can:
+
+Use AWS Elastic Beanstalk (eb init, eb deploy).
+Deploy using Google Cloud Run.
+Use Azure Container Apps.
+🎯 Summary of What We Did
+Step	Command
+Save model & preprocessor	save_model_and_preprocessor(model, preprocessor)
+Run FastAPI locally	uvicorn src.app:app --host 0.0.0.0 --port 8000 --reload
+Build Docker image	docker build -t mlops-fastapi .
+Run Docker container	docker run -p 8000:8000 mlops-fastapi
+Push Docker image	docker push YOUR_DOCKERHUB_USERNAME/mlops-fastapi
+Now your MLOps FastAPI model is containerized and ready for deployment! 🚀 Let me know if you need any modifications. 😊
+
+the updated project structure with the necessary files for FastAPI deployment and Dockerization:
+MLOPS/
+│── artifacts/               # Stores trained models and preprocessing pipelines
+│   ├── best_model.pkl       # Trained best model
+│   ├── preprocessor.pkl     # Preprocessing pipeline
+│
+│── catboost_info/           # CatBoost internal logs (if using CatBoost)
+│── Logs/                    # Stores logs for monitoring/debugging
+│── mlproject.egg-info/      # Python package metadata
+│── notebook/                # Jupyter Notebooks for EDA & experimentation
+│
+│── src/                     # Source code directory
+│   │── components/          # Core ML components
+│   │   ├── data_injestion.py      # Handles data loading and train-test split
+│   │   ├── data_transformation.py # Preprocessing and feature transformation logic
+│   │   ├── model_trainer.py       # Model training and evaluation logic
+│   │
+│   │── pipeline/            # Training and prediction pipelines
+│   │   ├── train_pipeline.py      # Code to execute the training pipeline
+│   │   ├── predict_pipeline.py    # Code for inference on new data
+│   │   ├── utils.py               # Utility functions (saving/loading models, evaluation, etc.)
+│   │
+│   │── app.py               # FastAPI service for model deployment
+│   │── logger.py            # Logger configuration
+│   │── exception.py         # Custom exception handling
+│
+│── venv/                    # Python virtual environment (should be in .gitignore)
+│── .gitignore               # Ignore unnecessary files
+│── README.md                # Project documentation
+│── requirements.txt         # Python dependencies
+│── Dockerfile               # Docker configuration for FastAPI app
+│── setup.py                 # Python package setup file
+💡 Key Additions
+artifacts/:
+
+best_model.pkl (Trained Model)
+preprocessor.pkl (Feature transformation pipeline)
+src/app.py:
+
+FastAPI app for model inference.
+Loads best_model.pkl and preprocessor.pkl.
+Exposes /predict API endpoint.
+Dockerfile:
+
+Defines a containerized environment for deployment.
+Uses Uvicorn to run FastAPI.
+requirements.txt:
+
+Lists dependencies (fastapi, scikit-learn, pandas, uvicorn, etc.)
+🚀 Next Steps
+Train and save your best model & preprocessor in artifacts/.
+Run FastAPI locally using:
+uvicorn src.app:app --host 0.0.0.0 --port 8000 --reload
+Containerize and deploy:
+Build Docker image:
+docker build -t mlops-fastapi .
+Run container:
+docker run -p 8000:8000 mlops-fastapi
+Deploy to Docker Hub, AWS, or GCP.

@@ -9,4 +9,5 @@ catboost
 xgboost
 mlflow
 dagshub
--e .
+fastapi
+uvicorn

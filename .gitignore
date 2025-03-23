@@ -129,7 +129,8 @@ celerybeat.pid
 
 # Environments
 .env
-mlruns
+./mlruns
+./mlruns
 .venv
 env/
 venv/
@@ -138,7 +139,10 @@ env.bak/
 venv.bak/
 artifacts
 artifacts/
-
+Logs
+catboost_info
+mlartifacts
+mlruns
 # Spyder project settings
 .spyderproject
 .spyproject
